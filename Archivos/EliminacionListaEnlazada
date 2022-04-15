@@ -17,7 +17,7 @@ begin
         read(arch,reg);
     if (not eof(arch)) then begin
         reg.cod:=head; 
-        head:=(-1* filepos(arch))-1;  //guardo la posicion del registro que elimine y lo paso a negativo
+        head:=(-1* filepos(arch));  //guardo la posicion del registro que elimine y lo paso a negativo
         seek(arch,filepos(arch)-1)); //lo ubico en la posicion que lo eliminé
         write(arch,reg); 
         seek(arch,0); //me ubico en el indice otra vez
