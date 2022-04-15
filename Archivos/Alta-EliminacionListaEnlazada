@@ -28,3 +28,26 @@ begin
         write('No fue eliminado ');
     close(arch); 
 end;
+
+procedure agregarFlor(var arch:archivo, nombre: string; cod:integer);
+var
+    flor,aux:reg_flor;
+begin
+    flor.cod:=cod;
+    flor.nombre:=nombre;
+    reset(arch);
+    read(arch,aux);
+    if aux.codigo > 0 then begin
+        seek(arch,Abs(aux.codigo);
+        read(arch,aux);
+        seek(arch, filepos(arch)-1);
+        write(arch,flor);
+        seek(arch,0);
+        write(arch,aux);
+    end
+    else begin
+        seek(arch,filepos(arch));
+        write(arch,flor);
+    end;
+    close(arch);
+end;
