@@ -190,7 +190,7 @@ begin
     write(arch,regAux);
     seek(arch,filesize(arch));
     read(arch,regAux);
-    regAux.nro:= 9999; //marca para eliminacion logica, CONSULTAR
+    regAux.nombre := '*'+ regAux.nombre; //Dejo marca de borrado logico.
     seek(arch,filepos(arch)-1);
     write(arch,regAux);
     close(arch);
