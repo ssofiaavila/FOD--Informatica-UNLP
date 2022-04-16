@@ -179,22 +179,19 @@ begin
     readln(nroEliminado);
     reset(arch);
     seek(arch,filesize(arch));
-    read(arch,regAux);
+    read(arch,regUltimo);
+	truncate(arch);
     seek(arch,0);
     read(arch,regAux);
     while (not eof (arch)) and (regAux.nro <> nroEliminado) do begin
         read(arch,regAux);
     end;
-    regAux:=regUltimo;
-    seek(arch,filepos(arch)-1);
-    write(arch,regAux);
-    seek(arch,filesize(arch));
-    read(arch,regAux);
-    regAux.nombre := '*'+ regAux.nombre; //Dejo marca de borrado logico.
-    seek(arch,filepos(arch)-1);
-    write(arch,regAux);
+	if not eof(arch) then begin
+    		regAux:=regUltimo;
+   		seek(arch,filepos(arch)-1);
+    		write(arch,regAux);
+    end;
     close(arch);
-
 end;
 
 
@@ -229,7 +226,7 @@ begin
 			5: modificarEdad(arch);		
 			6:exportarTexto(arch);
 			7: exportarSinDNI(arch);
-            8: baja(arch);
+            		8: baja(arch);
 		end;
 	until opcion=0;
 end;
