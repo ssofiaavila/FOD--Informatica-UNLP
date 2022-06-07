@@ -37,7 +37,7 @@ begin
     flor.nombre:=nombre;
     reset(arch);
     read(arch,aux);
-    if aux.codigo > 0 then begin
+    if aux.codigo < 0 then begin
         seek(arch,Abs(aux.codigo);
         read(arch,aux);
         seek(arch, filepos(arch)-1);
