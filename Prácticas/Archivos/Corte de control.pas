@@ -1,57 +1,62 @@
-program corteDeControl;
+{se almacena en un archivo la información de venta de una cadena de elctrodomésticos. Es necesario informar el total vendido en cada sucursal, ciudad, provincia como el total final.
+El archivo está ordenado por provincia, ciudad y sucursal}
+
+program ejemplo;
 const
-  valoralto= 'ZZZ';
+	valor_alto='ZZZ';
 type
-  str10=string[10];
-  prov = record
-    provincia,partido,ciudad:str10;
-    cant_varones,cant_mujeres,cant_desocupados:integer;
-  end;
-  instituto=file of prov;
-  
-var
-  regm:prov;
-  inst:instituto;
-  t_varones,t_mujeres,t_desocupados,t_prov_var,t_prov_muj,t_prov_des:integer;
-  ant_prov,ant_partido:str10;
-  
-  
+	nombre=string[20];
+	reg_venta=record
+		vendedor:integer;
+		monto:real;
+		sucursal:nombre;
+		ciudad:nombre;
+		provincia:nombre;
+	end;
+	ventas=file of reg_ventas;
+
+procedure leer(var arch: archivo; var dato:reg_venta);
 begin
-  assign(inst,'censo');
-  reset(inst); //creo archivo
-  writeln('Provincia: ', regm.provincia);
-  writeln('Partido: ', regm.partido);
-  writeln('Ciudad: ', regm,ciudad);
-  t_varones:=0;
-  t_mujeres:=0; //inicializo totales auxiliares
-  t_desocupados:=0;
-  
-  
-  t_prov_var:=0;
-  t_prov_muj:=0;  //inicializo totales provincia
-  t_prov_des:=0;
-  
-  while (regm.provincia <> valoralto) do begin
-    ant_prov:= regm.provincia;
-    ant_partido:=regm.partido;
-    while (ant_prov = regm.provincia) and (ant_partido = regm.partido) do begin
-      t_varones:= t_varones + regm.cant_varones;
-      t_mujeres:= t_mujeres + regm.cant_mujeres;
-      t_desocupados:+ t_desocupados + regm.cant_desocupados;
-      leer(inst,regm);
-    end;
-    writeln('Total partido: ', t_varones, t_mujeres, t_desocupados);
-    t_prov_var:= t_prov_var +t_varones;
-    t_prov_muj:= t_prov_muj + t_mujeres;
-    t_prov_des:= t_prov_des + t_des;
-    ant_partido:= regm.partido;
-    if (ant_prov <> regm.provincia) then begin
-      writeln('Total provincia: ', t_prov_var, t_prov_muj, t_prov,des);
-      t_prov_var:= 0;
-      t_prov_muj:= 0;
-      t_prov_des:= 0;
-      writeln('Provincia: ', regm.provincia);
-    end;
-    writeln('Partido: ', regm.partido);
-  end;
-end.
+	if not eof(arch) then
+		read(arch,dato)
+	else
+		dato.provincia:=valor_alto;
+end;
+
+procedure corteControl(var arch::archivo);
+var
+	reg:reg_venta;
+	total,totalProv,totalCiudad,totSuc:integer;
+	prov,ciudad,sucursal:nombre;
+begin
+	reset(arch);
+	total:=0;
+	while reg.provincia <> valor_alto do begin
+		write('Prov: ', reg.provincia);
+		prov:=reg.provincia;
+		totProv:=0;
+		while (prov= reg.provincia) do begin
+			writeln('Ciudad: ', reg.ciudad);
+			totCiudad:=0;
+			while (prov=reg.provincia) and (ciudad=reg.ciudad) do begin
+				writeln('Sucursal: ', reg.sucursal);
+				sucursal:=reg.sucursal;
+				totSuc:=0;
+				while (prov=reg.provincia) and (ciudad=reg.provincia) and (sucursal=reg.sucursal) do begin	
+					write('Vendedor: ', reg.vendedor);
+					write(reg.monto);
+					totSuc:=totSuc+ reg.monto;
+					leer(arch,reg);
+				end;
+				writeln('Total sucursal:', totSuc);
+				totalCiudad:=totalCiudad+totSuc;
+			end;
+			writeln('Total ciudad: ', totCiudad);
+			totProv:= totProv+ totCiudad;
+		end;
+		writeln('Total provincia: ', totProv);
+		total:=total+ totProv;
+	end;
+	wirteln('Total empresa: ',total);
+	close(arch);
+end;
