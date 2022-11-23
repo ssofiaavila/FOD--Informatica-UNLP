@@ -21,7 +21,7 @@ Prácticas y material de fundamentos y organización de datos, cursada 1er semes
     * [Operaciones básicas](https://github.com/ssofiaavila/FOD--Informatica-UNLP/blob/main/Pr%C3%A1cticas/Archivos/Operaciones%20b%C3%A1sicas.pas)
     </details>
    </details>
-* Árboles
+* [Árboles](https://github.com/ssofiaavila/FOD--Informatica-UNLP/blob/main/Pr%C3%A1cticas/Pr%C3%A1ctica%204%2C%20%C3%A1rboles.pdf)
 * <details>
   <summary> Hashing </summary>
   
