@@ -27,7 +27,7 @@ Prácticas y material de fundamentos y organización de datos, cursada 1er semes
   
   * [Práctica 5](https://github.com/ssofiaavila/FOD--Informatica-UNLP/blob/main/Pr%C3%A1cticas/Hashing/Pr%C3%A1ctica%205.pdf)
   
-  * [Calculadora funciones hashing](https://github.com/ssofiaavila/FOD--Informatica-UNLP/blob/main/Pr%C3%A1cticas/Hashing/calculadoraFuncionHashing.pas)
+  * [Calculadora funciones hashing](https://github.com/ssofiaavila/FOD--Informatica-UNLP/blob/main/Pr%C3%A1cticas/calculadoraFuncionHashing.pas)
   </details>
   
   
